@@ -1,0 +1,356 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: HomePage(),
+  ));
+}
+
+// ---------- HOME PAGE ----------
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('🏋️ Workout Plans Home'),
+        backgroundColor: Colors.grey,
+        foregroundColor: Colors.white,
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // 🖼️ Gorilla athlete image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.network(
+                    'https://static.vecteezy.com/system/resources/previews/049/166/189/non_2x/illustration-of-a-strong-gorilla-on-a-white-background-cartoon-style-free-vector.jpg',
+                    height: 400,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const SizedBox(height: 40),
+
+                NavButton(
+                  text: 'Beginner Workout',
+                  targetPage: const BeginnerWorkoutPage(),
+                ),
+                const SizedBox(height: 20),
+                NavButton(
+                  text: 'Intermediate Workout',
+                  targetPage: const IntermediateWorkoutPage(),
+                ),
+                const SizedBox(height: 20),
+                NavButton(
+                  text: 'Advanced Workout',
+                  targetPage: const AdvancedWorkoutPage(),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ---------- BEGINNER WORKOUT PAGE ----------
+
+class BeginnerWorkoutPage extends StatelessWidget {
+  const BeginnerWorkoutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('💪 Beginner Workout'),
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SectionTitle('🔄 Warm-Up (5–10 minutes)'),
+            const WorkoutText('• Treadmill walk or light jog – 5 minutes'),
+            const WorkoutText('• Dynamic stretches:'),
+            const WorkoutText('    - Arm circles – 1 minute'),
+            const WorkoutText('    - Leg swings – 1 minute'),
+            const WorkoutText('    - Bodyweight squats – 1 minute'),
+            const SizedBox(height: 20),
+            const SectionTitle('🏋️ Workout Routine'),
+            const WorkoutText('Do 2–3 sets of each exercise. Rest for 60–90 seconds between sets.\n'),
+            const WorkoutText('1. Leg Press (or Bodyweight Squat) – 10–12 reps\n   Focus: Quads, hamstrings, glutes'),
+            const WorkoutText('2. Lat Pulldown (or Assisted Pull-Up) – 10–12 reps\n   Focus: Back, biceps'),
+            const WorkoutText('3. Chest Press Machine (or Dumbbell Bench Press) – 10 reps\n   Focus: Chest, shoulders, triceps'),
+            const WorkoutText('4. Dumbbell Shoulder Press – 8–10 reps\n   Focus: Shoulders, upper arms'),
+            const WorkoutText('5. Seated Row Machine – 10–12 reps\n   Focus: Back, biceps'),
+            const WorkoutText('6. Plank Hold – 20–30 seconds\n   Focus: Core'),
+            const SizedBox(height: 20),
+            const SectionTitle('🧘 Cool Down (5–10 minutes)'),
+            const WorkoutText('• Light cardio (e.g., slow treadmill walk or stationary bike) – 3–5 minutes'),
+            const WorkoutText('• Static stretches: hamstrings, quads, chest, shoulders, and back – hold each for 20–30 seconds'),
+            const SizedBox(height: 20),
+            const SectionTitle('✅ Tips for Beginners'),
+            const WorkoutText('• Start light: Prioritize form over heavy weights.'),
+            const WorkoutText('• Progress gradually: Increase weight or reps weekly.'),
+            const WorkoutText('• Stay hydrated and eat a balanced meal post-workout.'),
+            const WorkoutText('• Track your progress in a notebook or app.'),
+            const SizedBox(height: 30),
+            Center(
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.home),
+                label: const Text('Back to Home'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                ),
+                onPressed: () {
+                  Navigator.popUntil(context, (route) => route.isFirst);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ---------- INTERMEDIATE WORKOUT PAGE ----------
+
+class IntermediateWorkoutPage extends StatelessWidget {
+  const IntermediateWorkoutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('🔥 Intermediate - PPL Split'),
+        backgroundColor: Colors.orange,
+        foregroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SectionTitle('🗓️ 3-Day Split (Push / Pull / Legs) – Max 3 Sets'),
+            const WorkoutText('Example Schedule:\n'),
+            const WorkoutText('Day 1 – Push (Chest, Shoulders, Triceps)'),
+            const WorkoutText('Day 2 – Pull (Back, Biceps)'),
+            const WorkoutText('Day 3 – Legs & Core'),
+            const SizedBox(height: 20),
+            const SectionTitle('💥 Day 1 – Push (Chest, Shoulders, Triceps)'),
+            const WorkoutText('Barbell Bench Press – 3 sets of 6–8 reps'),
+            const WorkoutText('Dumbbell Shoulder Press – 3 sets of 8–10 reps'),
+            const WorkoutText('Incline Dumbbell Press – 3 sets of 8–10 reps'),
+            const WorkoutText('Lateral Raises – 3 sets of 12–15 reps'),
+            const WorkoutText('Triceps Pushdown (Cable) – 3 sets of 10–12 reps'),
+            const SizedBox(height: 20),
+            const SectionTitle('🔁 Day 2 – Pull (Back, Biceps)'),
+            const WorkoutText('Pull-Ups or Lat Pulldown – 3 sets of 6–10 reps'),
+            const WorkoutText('Barbell or Dumbbell Rows – 3 sets of 8–10 reps'),
+            const WorkoutText('Seated Cable Row – 3 sets of 10–12 reps'),
+            const WorkoutText('Face Pulls – 3 sets of 12–15 reps'),
+            const WorkoutText('Dumbbell or Barbell Curls – 3 sets of 10–12 reps'),
+            const SizedBox(height: 20),
+            const SectionTitle('🦵 Day 3 – Legs & Core'),
+            const WorkoutText('Barbell Back Squat or Leg Press – 3 sets of 6–8 reps'),
+            const WorkoutText('Romanian Deadlift – 3 sets of 8–10 reps'),
+            const WorkoutText('Walking Lunges – 3 sets of 12 reps per leg'),
+            const WorkoutText('Standing or Seated Calf Raises – 3 sets of 15–20 reps'),
+            const WorkoutText('Hanging Leg Raises or Cable Crunches – 3 sets of 12–15 reps'),
+            const SizedBox(height: 20),
+            const SectionTitle('✅ Tips for Success'),
+            const WorkoutText('• Stick to 2–3 min rest for heavy compound lifts, 60–90 sec for accessory work.'),
+            const WorkoutText('• Focus on slow, controlled form and full range of motion.'),
+            const WorkoutText('• Use progressive overload: add weight or reps week to week.'),
+            const WorkoutText('• Log your workouts for consistency and tracking progress.'),
+            const SizedBox(height: 30),
+            Center(
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.home),
+                label: const Text('Back to Home'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                ),
+                onPressed: () {
+                  Navigator.popUntil(context, (route) => route.isFirst);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ---------- ADVANCED WORKOUT PAGE ----------
+
+class AdvancedWorkoutPage extends StatelessWidget {
+  const AdvancedWorkoutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('🏆 Advanced Workout'),
+        backgroundColor: Colors.redAccent,
+        foregroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            SectionTitle('🗓️ 6-Day Chest & Back / Arms / Legs Split (Upper-Lower Frequency 2x/week)'),
+            WorkoutText('Weekly Schedule:'),
+            WorkoutText('Monday: Chest & Back A'),
+            WorkoutText('Tuesday: Arms A'),
+            WorkoutText('Wednesday: Legs A'),
+            WorkoutText('Thursday: Chest & Back B'),
+            WorkoutText('Friday: Arms B'),
+            WorkoutText('Saturday: Legs B'),
+            WorkoutText('Sunday: Rest'),
+            SizedBox(height: 20),
+            SectionTitle('💥 Chest & Back A (Heavy Focus)'),
+            WorkoutText('Barbell Bench Press — 3 sets of 5–8 reps'),
+            WorkoutText('Pull-Ups or Weighted Pull-Ups — 3 sets of 6–8 reps'),
+            WorkoutText('Incline Dumbbell Press — 3 sets of 8–10 reps'),
+            WorkoutText('Barbell Row (Overhand or Underhand) — 3 sets of 8–10 reps'),
+            WorkoutText('Cable Flyes — 3 sets of 12–15 reps'),
+            WorkoutText('Lat Pulldown (Wide Grip) — 3 sets of 10–12 reps'),
+            SizedBox(height: 20),
+            SectionTitle('💪 Arms A (Triceps + Biceps Focus)'),
+            WorkoutText('Barbell Curl — 3 sets of 8–10 reps'),
+            WorkoutText('Skull Crushers — 3 sets of 10–12 reps'),
+            WorkoutText('Preacher Curl — 3 sets of 10–12 reps'),
+            WorkoutText('Overhead Dumbbell Triceps Extension — 3 sets of 10–12 reps'),
+            WorkoutText('Hammer Curls — 3 sets of 12–15 reps'),
+            WorkoutText('Cable Triceps Pushdowns — 3 sets of 12–15 reps'),
+            SizedBox(height: 20),
+            SectionTitle('🦵 Legs A (Strength Focus: Quads & Posterior Chain)'),
+            WorkoutText('Barbell Back Squat — 3 sets of 5–8 reps'),
+            WorkoutText('Romanian Deadlift — 3 sets of 8–10 reps'),
+            WorkoutText('Walking Lunges — 3 sets of 10 per leg'),
+            WorkoutText('Leg Press — 3 sets of 10–12 reps'),
+            WorkoutText('Hanging Leg Raises — 3 sets of 15–20 reps'),
+            SizedBox(height: 20),
+            SectionTitle('💥 Chest & Back B (Hypertrophy & Isolation Focus)'),
+            WorkoutText('Incline Smith Machine Press — 3 sets of 8–10 reps'),
+            WorkoutText('Chest-Supported Dumbbell Row — 3 sets of 10–12 reps'),
+            WorkoutText('Machine Chest Press — 3 sets of 12–15 reps'),
+            WorkoutText('Straight-Arm Cable Pulldown — 3 sets of 12–15 reps'),
+            WorkoutText('Pec Deck Flyes — 3 sets of 15 reps'),
+            WorkoutText('Face Pulls — 3 sets of 15 reps'),
+            SizedBox(height: 20),
+            SectionTitle('💪 Arms B (Pump/Accessory Focus)'),
+            WorkoutText('Close-Grip Bench Press — 3 sets of 6–8 reps'),
+            WorkoutText('Incline Dumbbell Curl — 3 sets of 10–12 reps'),
+            WorkoutText('Rope Overhead Triceps Extension — 3 sets of 12–15 reps'),
+            WorkoutText('Zottman Curl — 3 sets of 10–12 reps'),
+            WorkoutText('Reverse Grip Pushdowns — 3 sets of 12–15 reps'),
+            WorkoutText('Cable Curls (with slow negative) — 3 sets of 12–15 reps'),
+            SizedBox(height: 20),
+            SectionTitle('🦵 Legs B (Glutes, Hams & Isolation Focus)'),
+            WorkoutText('Hip Thrusts (Barbell or Machine) — 3 sets of 8–10 reps'),
+            WorkoutText('Bulgarian Split Squats — 3 sets of 10–12 reps'),
+            WorkoutText('Glute Kickbacks (Cable or Machine) — 3 sets of 12–15 reps'),
+            WorkoutText('Seated or Lying Leg Curls — 3 sets of 12–15 reps'),
+            WorkoutText('Standing or Seated Calf Raise — 3 sets of 15–20 reps'),
+            WorkoutText('Cable Crunches or Decline Sit-Ups — 3 sets of 15 reps'),
+            SizedBox(height: 20),
+            SectionTitle('✅ Tips for Advanced Training'),
+            WorkoutText('• Use progressive overload (track sets, reps, and weight).'),
+            WorkoutText('• Rest: 60–90 sec for accessories, 2+ min for compounds.'),
+            WorkoutText('• Add intensity selectively: drop sets, supersets, slow tempo on B days.'),
+            WorkoutText('• Prioritize mobility, warm-up, and recovery (foam roll, stretch, sleep).'),
+            SizedBox(height: 30),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16),
+        child: ElevatedButton.icon(
+          icon: const Icon(Icons.home),
+          label: const Text('Back to Home'),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.grey,
+            foregroundColor: Colors.white,
+            padding: const EdgeInsets.symmetric(vertical: 14),
+          ),
+          onPressed: () {
+            Navigator.popUntil(context, (route) => route.isFirst);
+          },
+        ),
+      ),
+    );
+  }
+}
+
+// ---------- REUSABLE COMPONENTS ----------
+
+class SectionTitle extends StatelessWidget {
+  final String text;
+  const SectionTitle(this.text, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Text(text, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+    );
+  }
+}
+
+class WorkoutText extends StatelessWidget {
+  final String text;
+  const WorkoutText(this.text, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: Text(text, style: const TextStyle(fontSize: 16)),
+    );
+  }
+}
+
+class NavButton extends StatelessWidget {
+  final String text;
+  final Widget targetPage;
+  const NavButton({required this.text, required this.targetPage, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.grey,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        minimumSize: const Size(double.infinity, 50),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => targetPage),
+        );
+      },
+      child: Text(text, style: const TextStyle(fontSize: 18)),
+    );
+  }
+}
